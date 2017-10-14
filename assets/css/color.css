@@ -8,6 +8,21 @@
 .blue-2 { background-color: #44D4E7; }
 .blue-3 { background-color: #1CC3DA; }
 
+.light-gray-1 { background-color: #F0F0F0; }
+.light-gray-2 { background-color: #DDD; }
+.light-gray-3 { background-color: #C3C3C3; }
+
+.gray-1 { background-color: #707070; }
+.gray-2 { background-color: #555; }
+.gray-3 { background-color: #434343; }
+
 .blue-metallic-1 { background-color: #CBE5EF; }
 .blue-metallic-2 { background-color: #9FD0E3; }
 .blue-metallic-3 { background-color: #79BED8; }
+
+
+
+
+.light-text {
+  color: #F0F0F0;
+}

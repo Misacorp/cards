@@ -4,6 +4,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
 }
 
 body {
@@ -17,11 +19,9 @@ body {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  height: 100vh;
-  line-height: 100vh;
   text-align: center;
 
-  background-color: #333;
+  background-color: #F0F0F0;
 }
 
 .card {
@@ -34,6 +34,17 @@ body {
   height: 28rem;
   line-height: 1em;
   border-radius: 15px;
+  
+  will-change: transform;
+  transition: transform 0.5s ease-out;
+}
+
+.card--active {
+  transform: rotateY(180deg);
+}
+
+.card--inactive {
+  transform: rotateY(0);
 }
 
 .card--clip {
@@ -45,20 +56,23 @@ body {
 }
 
 .card--clip-1 {
-  -webkit-clip-path: polygon(0 30%, 100% 71%, 100% 100%, 0% 100%);
-  clip-path: polygon(0 30%, 100% 71%, 100% 100%, 0% 100%);
-}
-
-.card--clip-2 {
   -webkit-clip-path: polygon(0 0, 100% 60%, 100% 100%, 0% 100%);
   clip-path: polygon(0 0, 100% 60%, 100% 100%, 0% 100%);
 }
 
-.card--title {
-  font-size: 2em;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  margin-bottom: 0.5em;
+.card--clip-2 {
+  -webkit-clip-path: polygon(0 30%, 100% 71%, 100% 100%, 0% 100%);
+  clip-path: polygon(0 30%, 100% 71%, 100% 100%, 0% 100%);
+}
+
+.card--clip-3 {
+  -webkit-clip-path: polygon(0 60%, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0 60%, 100% 0, 100% 100%, 0% 100%);
+}
+
+.card--clip-4 {
+  -webkit-clip-path: polygon(0 71%, 100% 30%, 100% 100%, 0% 100%);
+  clip-path: polygon(0 71%, 100% 30%, 100% 100%, 0% 100%);
 }
 
 .card--content {
@@ -66,20 +80,19 @@ body {
   bottom: 0.5rem;
   left: 0;
   padding: 1rem;
+  line-height: 1.2em;
   z-index: 2;
   text-align: left;
 }
 
-.card--content > * {
+.card--title {
+  font-size: 2em;
+  line-height: 1em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.25em;
 }
 
-.card--highlight {
-  display: block;
-  position: absolute;
-  right: 15px;
-  top: 0;
-  width: 8%;
-  height: 30%;
-  background-color: #FFCC88;
-  z-index: 1;
+.card-back .card--title {
+  margin-bottom: 0;
 }
