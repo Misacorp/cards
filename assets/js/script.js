@@ -18,6 +18,7 @@ $(document).on('click', '.card--inactive', (e) => {
 $(document).ready(() => {
   // Populate card stack with random cards.
   populateCardStack(3);
+  updateRemainingCounter(unopened.length);
 });
 
 
@@ -28,24 +29,27 @@ $(document).on('click', '.card-back', (e) => {
 
   // Create DOM element from card
   console.log(draw);
-  createCard(draw.card);
+  let card = createCard(draw.card);
 
-  // Remove 'draw' element if stack is empty
+  // Remove previous card from display
+  let prev = $('.display > .card');
+  if(prev) {
+    $(prev).hide();
+  }
+
+  // Append card to DOM
+  $('.display').append($(card));
+
+  // Update remaining card counter
+  updateRemainingCounter(draw.remaining);
+
+  // Remove 'draw card' element if stack is empty
   if(draw.remaining < 1) {
     let trigger = $(e.target).closest('.card-back');
     let parent = $(trigger).parent();
 
-    console.log(parent);
-
     // Hide card stack
     $(trigger).hide();
-
-    // Show empty stack
-    // let empty = $(`<div class="card stack--empty"></div>`);
-    // let content = $(`<div class="card--content"></div>`);
-    // $(content).append($(`<div class="card--title light">Empty</div>`));
-
-    // $(empty).append(content);
 
     let empty = new Card('No Cards Left', 'You have drawn all cards from Set Name', 'gray');
     $(parent).append(createCard(empty));
@@ -89,14 +93,7 @@ function createCard(obj) {
   // Append content to card
   $(card).append($(card_content));
 
-  // Remove previous card from display
-  let prev = $('.display > .card');
-  if(prev) {
-    $(prev).hide();
-  }
-
-  // Append card to DOM
-  $('.display').append($(card));
+  return card;
 }
 
 
@@ -129,4 +126,10 @@ function populateCardStack(size) {
     let card = new Card(name, text, faction);
     unopened.push(card);
   }
+}
+
+
+
+function updateRemainingCounter(amount) {
+  $('#remaining-count').text(amount);
 }
