@@ -81,21 +81,244 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./lib/js/script.compiled.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/cards.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./lib/js/script.compiled.js":
-/*!***********************************!*\
-  !*** ./lib/js/script.compiled.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/Card.js":
+/*!*********************!*\
+  !*** ./src/Card.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nfunction _classCallCheck(instance, Constructor) {\n  if (!(instance instanceof Constructor)) {\n    throw new TypeError(\"Cannot call a class as a function\");\n  }\n}\n\nfunction _defineProperties(target, props) {\n  for (var i = 0; i < props.length; i++) {\n    var descriptor = props[i];\n    descriptor.enumerable = descriptor.enumerable || false;\n    descriptor.configurable = true;\n    if (\"value\" in descriptor) descriptor.writable = true;\n    Object.defineProperty(target, descriptor.key, descriptor);\n  }\n}\n\nfunction _createClass(Constructor, protoProps, staticProps) {\n  if (protoProps) _defineProperties(Constructor.prototype, protoProps);\n  if (staticProps) _defineProperties(Constructor, staticProps);\n  return Constructor;\n}\n\nvar Card =\n/*#__PURE__*/\nfunction () {\n  /**\n   * Creates a new Card.\n   *\n   * @param {string} title        Card title\n   * @param {string} description  Card description\n   * @param {string} faction      Faction the card belongs to\n   */\n  function Card(title, description, faction) {\n    _classCallCheck(this, Card);\n\n    this.title = title;\n    this.description = description;\n    this.faction = faction;\n  }\n\n  _createClass(Card, [{\n    key: \"getTitle\",\n    value: function getTitle() {\n      return this.title;\n    }\n  }]);\n\n  return Card;\n}();\n\nvar _default = Card;\nexports.default = _default;\n\"use strict\";\n\nvar _Card = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error(\"Cannot find module './Card'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));\n\nfunction _interopRequireDefault(obj) {\n  return obj && obj.__esModule ? obj : {\n    default: obj\n  };\n}\n\nvar firstCard = new _Card.default('First card', 'This is a cool card', 'The Mighty Javascript Gang'); // console.log(firstCard.getName());\n\nvar greet = function greet() {\n  return console.log('Hello');\n};\n\ngreet();\n\n//# sourceURL=webpack:///./lib/js/script.compiled.js?");
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Card =
+/*#__PURE__*/
+function () {
+  /**
+   * Creates a new Card.
+   *
+   * @param {string} title        Card title
+   * @param {string} description  Card description
+   * @param {string} faction      Faction the card belongs to
+   */
+  function Card(title, description, faction) {
+    _classCallCheck(this, Card);
+
+    this.title = title;
+    this.description = description;
+    this.faction = faction;
+  }
+
+  _createClass(Card, [{
+    key: "getTitle",
+    value: function getTitle() {
+      return this.title;
+    }
+  }]);
+
+  return Card;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Card);
+
+/***/ }),
+
+/***/ "./src/CardStack.js":
+/*!**************************!*\
+  !*** ./src/CardStack.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Card */ "./src/Card.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var CardStack =
+/*#__PURE__*/
+function () {
+  /**
+   * Creates a stack of cards.
+   */
+  function CardStack() {
+    _classCallCheck(this, CardStack);
+
+    this.stack = [];
+  }
+  /**
+   * Add a Card to the stack.
+   * @param {Card} card Card to add
+   */
+
+
+  _createClass(CardStack, [{
+    key: "addCard",
+    value: function addCard(card) {
+      if (card instanceof _Card__WEBPACK_IMPORTED_MODULE_0__["default"]) {
+        this.stack.push(card);
+        return this.stack.length;
+      }
+
+      throw new TypeError('Tried to add non-card object into card stack.');
+    }
+    /**
+     * Get number remaining cards in the array.
+     * @returns {number} Number of cards left.
+     */
+
+  }, {
+    key: "size",
+    value: function size() {
+      return this.stack.length;
+    }
+    /**
+     * Draw a specific number of cards.
+     * @param {number} amount Number of cards to draw. Defaults to 1.
+     * @returns {Card|array[Card]} Single card or array of cards.
+     */
+
+  }, {
+    key: "draw",
+    value: function draw() {
+      var amount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+      // If only one card is being drawn, return a Card object
+      if (amount === 1 && this.stack.length > 0) {
+        return this.stack.pop();
+      } // Multiple drawn cards are returned in an array.
+
+
+      var drawnCards = []; // Draw the amount of cards we wanted.
+
+      for (var i = 0; i < amount; i += 1) {
+        // Stop drawing if the stack is empty.
+        if (this.stack.length < 1) {
+          break;
+        }
+
+        var card = this.stack.pop();
+        drawnCards.push(card);
+      }
+
+      return drawnCards;
+    }
+    /**
+     * Shuffles array in place.
+     * @param {Array} a items An array containing the items.
+     */
+
+  }, {
+    key: "shuffle",
+    value: function shuffle() {
+      var stack = this.stack;
+
+      for (var i = this.stack.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var _ref = [stack[j], stack[i]];
+        stack[i] = _ref[0];
+        stack[j] = _ref[1];
+      }
+
+      return stack;
+    }
+  }, {
+    key: Symbol.iterator,
+    value: function value() {
+      var _this = this;
+
+      return {
+        next: function next() {
+          return {
+            value: _this.draw(1),
+            done: _this.stack.length > 0
+          };
+        }
+      };
+    }
+  }]);
+
+  return CardStack;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (CardStack);
+
+/***/ }),
+
+/***/ "./src/cards.js":
+/*!**********************!*\
+  !*** ./src/cards.js ***!
+  \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Card */ "./src/Card.js");
+/* harmony import */ var _CardStack__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardStack */ "./src/CardStack.js");
+
+ // Create a card stack
+
+var stack = new _CardStack__WEBPACK_IMPORTED_MODULE_1__["default"](); // Add some cards to it
+
+var maxCards = 10;
+
+for (var i = 0; i < maxCards; i += 1) {
+  var newCard = new _Card__WEBPACK_IMPORTED_MODULE_0__["default"]("Number ".concat(i + 1), "This is the number ".concat(i + 1, " card"), 'First card gang');
+  stack.addCard(newCard);
+} // Do something with the stack
+
+
+stack.shuffle();
+var _iteratorNormalCompletion = true;
+var _didIteratorError = false;
+var _iteratorError = undefined;
+
+try {
+  for (var _iterator = stack[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    card = _step.value;
+    console.log('Iterating through the stack');
+    console.log(card); //console.log(card.getTitle());
+  }
+} catch (err) {
+  _didIteratorError = true;
+  _iteratorError = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion && _iterator.return != null) {
+      _iterator.return();
+    }
+  } finally {
+    if (_didIteratorError) {
+      throw _iteratorError;
+    }
+  }
+}
+
+for (var _i = 0; _i < stack.size(); _i += 1) {
+  var _card = stack.draw();
+
+  console.log(_card.getTitle());
+} // const cards = stack.draw(3);
+// console.log('You drew some cards:', cards);
 
 /***/ })
 
 /******/ });
+//# sourceMappingURL=bundle.js.map

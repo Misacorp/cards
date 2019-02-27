@@ -1,22 +1,17 @@
 {
   "name": "cards",
   "version": "0.1.0",
-  "description": "Create card custom card stacks",
+  "description": "Create card stacks with custom cards",
   "main": "index.js",
   "scripts": {
-    "compile": "npx babel src --out-file lib/js/script.compiled.js",
-    "dev": "webpack && nodemon --exec babel-node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "npm run compile && webpack"
+    "test": "jest",
+    "webpack": "webpack",
+    "start": "npm run webpack && node ./dist/js/bundle.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Misacorp/cards.git"
   },
-  "keywords": [
-    "card",
-    "stack"
-  ],
   "author": "Misacorp",
   "license": "MIT",
   "bugs": {
@@ -28,17 +23,18 @@
     "@babel/core": "^7.3.3",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
-    "babel-loader": "^8.0.5",
-    "babel-register": "^6.26.0",
+    "@babel/register": "^7.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "eslint": "^5.14.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "nodemon": "^1.18.10",
+    "jest": "^24.1.0",
     "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4"
+    "babel-loader": "^8.0.5",
+    "dotenv": "^6.2.0"
   }
 }

@@ -1,28 +1,33 @@
+// Imports: Dependencies
 const path = require('path');
 const dotenv = require('dotenv');
+require("@babel/register");
 
+// Load environment variables.
 dotenv.config();
 
-module.exports = {
-  entry: './lib/js/script.compiled.js',
+// Webpack Configuration
+const config = {
+  entry: './src/cards.js',
   output: {
     path: path.resolve(__dirname, 'dist/js/'),
     filename: 'bundle.js',
   },
-  watch: false,
+  // Loaders
   module: {
     rules: [
+      // JavaScript/JSX Files
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
       },
-    ],
+    ]
   },
+  // Plugins
+  plugins: [],
   mode: process.env.NODE_ENV,
+  devtool: 'source-map',
 };
+// Exports
+module.exports = config;
