@@ -8,25 +8,26 @@ class Stack {
     this.stack = [];
   }
 
-  /**
-   * Add a Card to the stack.
-   * @param {Card} card Card to add
-   */
-  addCard(card) {
-    if (card instanceof Card) {
-      this.stack.push(card);
-      return this.stack.length;
-    }
-    throw new TypeError('Tried to add non-card object into card stack.');
-  }
-
 
   /**
    * Get number remaining cards in the array.
    * @returns {number} Number of cards left.
    */
-  size() {
+  get size() {
     return this.stack.length;
+  }
+
+
+  /**
+   * Add a Card to the stack.
+   * @param {Card} card Card to add
+   */
+  push(card) {
+    if (card instanceof Card) {
+      this.stack.push(card);
+      return this.stack.length;
+    }
+    throw new TypeError('Tried to add non-card object into card stack.');
   }
 
 
@@ -58,12 +59,12 @@ class Stack {
   }
 
   /**
-   * Shuffles array in place.
-   * @param {Array} a items An array containing the items.
+   * Shuffles stack in place.
    */
   shuffle() {
     const { stack } = this;
-    for (let i = this.stack.length - 1; i > 0; i -= 1) {
+    const stackLength = stack.length;
+    for (let i = stackLength - 1; i > 0; i -= 1) {
       const j = Math.floor(Math.random() * (i + 1));
       [stack[i], stack[j]] = [stack[j], stack[i]];
     }

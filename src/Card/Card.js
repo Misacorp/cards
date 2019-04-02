@@ -1,3 +1,5 @@
+/* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
+
 class Card {
   /**
    * Creates a new Card.
@@ -7,46 +9,83 @@ class Card {
    * @param {string} faction      Faction the card belongs to
    */
   constructor(title, description = null, faction = null) {
-    // Using setters like this INSIDE THE CONSTRUCTOR doesn't actually call the setter.
-    // Try to spot the difference when calling a setter externally.
     this.title = title;
     this.description = description;
     this.faction = faction;
   }
 
 
-  static set title(newTitle) {
-    if (typeof newTitle !== 'string' && newTitle.length < 1) {
-      throw new TypeError('No title given to Card constructor.');
-    }
-    this.title = newTitle;
+  /* Getters */
+
+  get title() {
+    return this._title;
   }
 
 
-  static set description(newDescription) {
-    if (Card.isValid(newDescription)) {
-      this.description = newDescription;
+  get description() {
+    return this._description;
+  }
+
+
+  get faction() {
+    return this._faction;
+  }
+
+
+  /* Setters */
+
+  set title(title) {
+    if (Card.isValidTitle(title)) {
+      this._title = title;
     }
   }
 
 
-  static set faction(newFaction) {
-    if (Card.isValid(newFaction)) {
-      this.faction = newFaction;
+  set description(description) {
+    if (Card.isValid(description)) {
+      this._description = description;
     }
+  }
+
+
+  set faction(faction) {
+    if (Card.isValid(faction)) {
+      this._faction = faction;
+    }
+  }
+
+
+  toString() {
+    return {
+      title: this._title,
+      description: this._description,
+      faction: this._faction,
+    };
   }
 
 
   /**
-   * Tests if an item is a valid parameter for the constructor.
+   * Tests if a title is valid ie. a non-empty string.
+   * @param {string} title Title to test.
+   * @returns {boolean} Is the title valid
+   */
+  static isValidTitle(title) {
+    if (typeof title === 'string' && title.length > 0) {
+      return true;
+    }
+    throw new TypeError('No title given to Card constructor.');
+  }
+
+
+  /**
+   * Tests if a description or faction is valid ie. a string or null.
    * @param {string} name Name of the item.
-   * @param {object} item Item to test the validity of.
+   * @returns {boolean} Is the item valid.
    */
   static isValid(item) {
     if (typeof item === 'string' || item === null) {
       return true;
     }
-    console.log(`${{ item }} is not a string or null.`);
     throw new TypeError(`${{ item }} is not a string or null.`);
   }
 }

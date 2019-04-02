@@ -1,5 +1,3 @@
-// import { test, expect } from 'jest';
-
 import Card from './Card';
 
 const title = 'Test title';
@@ -12,28 +10,71 @@ test('Happy path', () => {
 });
 
 
-/**
- * Cards can be created with only a title.
- */
 test('Can be created with only a title.', () => {
   expect(new Card(title))
     .toBeInstanceOf(Card);
 });
 
 
-/**
- * Cards need a title.
- */
-test('Throw a TypeError when a Card is created without a title.', () => {
-  expect(() => new Card(null, description, faction))
+test('Throw a TypeError when created without a title.', () => {
+  expect(() => new Card(undefined, description, faction))
     .toThrow(TypeError);
 });
 
 
-/**
- * Card parameters must be strings.
- */
-test('Cannot be created with non-string or non-null parameters', () => {
+test('Throw a TypeError when created with non-string or non-null parameters', () => {
   expect(() => new Card(123, {}, true))
     .toThrow(TypeError);
+});
+
+
+test('Can set title', () => {
+  const card = new Card('old title');
+  card.title = 'new title';
+  expect(card.title)
+    .toBe('new title');
+});
+
+
+test('Can get title', () => {
+  const card = new Card('my title');
+  expect(card.title)
+    .toBe('my title');
+});
+
+
+test('Can set description', () => {
+  const card = new Card(title, 'old description');
+  card.description = 'new description';
+  expect(card.description)
+    .toBe('new description');
+});
+
+
+test('Can get description', () => {
+  const card = new Card(title, 'my description');
+  expect(card.description)
+    .toBe('my description');
+});
+
+
+test('Can set faction', () => {
+  const card = new Card(title, description, 'old faction');
+  card.faction = 'new faction';
+  expect(card.faction)
+    .toBe('new faction');
+});
+
+
+test('Can get faction', () => {
+  const card = new Card(title, description, 'my faction');
+  expect(card.faction)
+    .toBe('my faction');
+});
+
+
+test('Getting undefined property returns null', () => {
+  const card = new Card(title);
+  expect(card.description === null && card.faction === null)
+    .toBeTruthy();
 });
